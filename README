@@ -1,0 +1,25 @@
+Go to /myapp folder and follow instruction
+
+If in different folders:
+change paths in:
+../myapp/app/app.rb
+../myapp/app/views/vcan.erb
+
+Execute:
+sudo modprobe can
+sudo modprobe vcan
+sudo modprobe slcan
+sudo ip link add name vcan0 type vcan
+sudo ifconfig vcan0 up
+nohup candump -L vcan0 > /home/basy/myapp/public/output.log &
+
+Go to myapp folder and execute:
+padrino start -p 3000 -h 0.0.0.0 (if vm)
+padrino start -p 3000 (if on hoste)
+
+  If does not start do:
+  bundle install
+
+Open:
+http://<local ip>:3000/vcan
+
